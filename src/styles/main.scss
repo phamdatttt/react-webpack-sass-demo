@@ -1,0 +1,235 @@
+
+// Theme variables
+
+$primary: #0d6efd;
+$bg-light: #ffffff;
+$text-light-mode: #0b1220;
+$border-light: #d1d5db;
+
+$bg-dark: #0f172a;
+$panel-dark: rgba(255, 255, 255, 0.06);
+$text-dark-mode: #e2e8f0;
+$border-dark: rgba(255, 255, 255, 0.18);
+
+// soft corner mixin
+@mixin soft-card {
+  border-radius: 1rem;
+  border: 1px solid $border-light;
+  background: $bg-light;
+  color: $text-light-mode;
+}
+
+// Dark override mixin
+@mixin dark-card {
+  border: 1px solid $border-dark;
+  background: $panel-dark;
+  color: $text-dark-mode;
+}
+
+
+// App shell
+
+.app-shell {
+  min-height: 100vh;
+  background: $bg-light;
+  color: $text-light-mode;
+
+  &.dark {
+    background: $bg-dark;
+    color: $text-dark-mode;
+
+    .app-header .title {
+      color: $text-dark-mode;
+    }
+
+    .panel-card {
+      @include dark-card;
+    }
+
+    .feature-list .tech {
+      color: $primary;
+    }
+  }
+}
+
+
+// HeaderBar
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 0.75rem;
+  column-gap: 1rem;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: $text-light-mode;
+      margin: 0;
+    }
+  }
+
+  .right {
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.3;
+
+      .meta-row {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+
+        .label {
+          font-weight: 500;
+          color: #6b7280;
+        }
+
+        .value {
+          font-weight: 600;
+          color: $text-light-mode;
+        }
+        .value.strong {
+          color: $primary;
+        }
+
+        .status-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 999px;
+          background: #10b981;
+        }
+        .status-dot.live {
+          box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+        }
+      }
+    }
+  }
+}
+
+
+// Cards
+
+.panel-card {
+  @include soft-card;
+
+  .panel-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .panel-meta {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+
+    .row-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed $border-light;
+      padding: 0.25rem 0;
+
+      .key {
+        font-weight: 500;
+        color: #6b7280;
+      }
+
+      .val {
+        font-weight: 600;
+        color: $text-light-mode;
+      }
+    }
+  }
+}
+
+
+// Feature list (tech stack info)
+
+.feature-list {
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  .tech {
+    font-weight: 600;
+    color: $primary;
+  }
+
+  .sub {
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+    padding-left: 1.2rem;
+    list-style: disc;
+    font-size: 0.85rem;
+  }
+}
+
+
+// navigation tabs
+.nav-tabs-app .btn-sm.active {
+  font-weight: 600;
+}
+
+// little theme toggle button on header row
+.theme-mini-btn {
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid $border-light;
+  background: $bg-light;
+  color: $text-light-mode;
+  cursor: pointer;
+}
+.app-shell.dark .theme-mini-btn {
+  border: 1px solid $border-dark;
+  background: $panel-dark;
+  color: $text-dark-mode;
+}
+
+
+// task board stuff
+.task-form .form-label-sm {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  color: #6b7280;
+}
+
+.task-list {
+  .task-row {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $border-light;
+  }
+}
+.app-shell.dark .task-list .task-row {
+  border-bottom: 1px solid $border-dark;
+}
+
+.task-item .task-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+.task-item .task-meta {
+  font-size: 0.75rem;
+}
+
+// dark mode details for task card text
+.app-shell.dark .task-item .task-title {
+  color: $text-dark-mode;
+}
+.app-shell.dark .task-item .task-meta {
+  color: $text-dark-mode;
+}
